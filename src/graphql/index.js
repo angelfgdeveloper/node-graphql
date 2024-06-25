@@ -12,7 +12,19 @@ const typeDefs = `
     getBoolean: Boolean
     getID: ID
     getNumbers(numbers: [Int]!): [Int]
+
+    getProduct: Product
   }
+
+  type Product {
+    id: ID!
+    name: String!
+    price: Float!
+    description: String!
+    image: String!
+    createdAt: String!
+  }
+
 `;
 
 // GET => Query (Consultar datos)
@@ -31,7 +43,19 @@ const resolvers = {
     getString: () => "word",
     getBoolean: () => true,
     getID: () => '12345678',
-    getNumbers: (_, args) => args.numbers
+    getNumbers: (_, args) => args.numbers,
+
+    getProduct: () => {
+      return { 
+        id: '12345', 
+        name: 'Product 1', 
+        price: 100.45, 
+        description: 'Lorem dsfsds sds d sdsd', 
+        image: 'http://image.asd', 
+        createdAt: new Date().toISOString()
+      }
+    },
+    
   }
 }
 
