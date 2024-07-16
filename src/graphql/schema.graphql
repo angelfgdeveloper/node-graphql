@@ -8,7 +8,9 @@ type Query {
   getID: ID
   getNumbers(numbers: [Int]!): [Int]
 
-  getProduct: Product
+  # Products
+  product(id: ID!): Product
+  products: [Product!]! # el arreglo no puede ser nulo en ambos lugares
 }
 
 type Product {
