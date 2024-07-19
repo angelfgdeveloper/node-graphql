@@ -1,6 +1,7 @@
-const { getProduct, getProducts } = require('./product.resolvers');
+const { getProduct, getProducts, addProduct } = require('./product.resolvers');
 
 const resolvers = {
+  
   Query: {
     hello: () => null,
     getPerson: (_, args) => `Hello, my name is ${ args.name }, I'm ${ args.age } years old!`,
@@ -15,7 +16,11 @@ const resolvers = {
     product: getProduct,
     products: getProducts,
     
+  },
+  Mutation: {
+    addProduct,
   }
+
 }
 
 module.exports = { resolvers };

@@ -13,6 +13,20 @@ type Query {
   products: [Product!]! # el arreglo no puede ser nulo en ambos lugares
 }
 
+# Crear, Actualizar y Eliminar
+type Mutation {
+  addProduct(dto: CreateProductoDto!): Product!
+}
+
+# Agrupar argumentos, DTOs, schemas
+input CreateProductoDto {
+  name: String!
+  price: Int!
+  description: String!
+  image: String!
+  categoryId: ID!
+}
+
 type Product {
   id: ID!
   name: String!
