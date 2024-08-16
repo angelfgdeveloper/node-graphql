@@ -16,6 +16,8 @@ type Query {
 # Crear, Actualizar y Eliminar
 type Mutation {
   addProduct(dto: CreateProductoDto!): Product!
+  updateProduct(id: ID!, dto: UpdateProductoDto!): Product
+  deleteProduct(id: ID!): ID
 }
 
 # Agrupar argumentos, DTOs, schemas
@@ -34,4 +36,12 @@ type Product {
   description: String!
   image: String!
   createdAt: String!
+}
+
+input UpdateProductoDto {
+  name: String
+  price: Int
+  description: String
+  image: String
+  categoryId: ID
 }
