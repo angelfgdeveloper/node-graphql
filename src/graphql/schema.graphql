@@ -20,6 +20,12 @@ type Mutation {
   deleteProduct(id: ID!): ID
 }
 
+type Category {
+  id: ID!
+  name: String!
+  image: String!
+}
+
 # Agrupar argumentos, DTOs, schemas
 input CreateProductoDto {
   name: String!
@@ -36,6 +42,8 @@ type Product {
   description: String!
   image: String!
   createdAt: String!
+  categoryId: ID!
+  category: Category!
 }
 
 input UpdateProductoDto {
