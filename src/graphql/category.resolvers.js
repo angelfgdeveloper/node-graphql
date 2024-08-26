@@ -1,18 +1,15 @@
-const boom = require('@hapi/boom');
 const CategoryService = require('./../services/category.service');
+const { checkRolesGql } = require('../utils/checkRolesGql');
+const { checkJWTGql } = require('../utils/checkJwtGql');
 
 const service = new CategoryService();
 
 const addCategory = async (_, { dto }, context) => {
-  const { user } = await context.authenticate('jwt', { session: false });
+  const user = await checkJWTGql(context);
 
-  if (!user) {
-    throw boom.unauthorized('jwt is not valid');
-  }
+  checkRolesGql(user, 'admin');
 
-  const newCategory = await service.create(dto);
-
-  return newCategory;
+  return await service.create(dto);
 }
 
 module.exports = {
