@@ -3,6 +3,7 @@ const { ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandin
 const { loadFiles } = require('@graphql-tools/load-files');
 const { resolvers } = require('./resolvers');
 const { buildContext } = require('graphql-passport');
+const { typeDefs: scalarsTypeDefs, resolvers: scalarsResolvers } = require('graphql-scalars');
 
 // El signo '!' => es para no tener nulos
 // const typeDefs = `
@@ -39,9 +40,20 @@ const { buildContext } = require('graphql-passport');
 
 const useGraphql = async (app) => {
 
-  const server = new ApolloServer({
-    typeDefs: await loadFiles('./src/**/*.graphql'),
+  const typeDefs = [
+    ...await loadFiles('./src/**/*.graphql'),
+    scalarsTypeDefs
+  ];
+
+  const allResolvers = [
     resolvers,
+    scalarsResolvers
+  ];
+
+  const server = new ApolloServer({
+    //typeDefs: await loadFiles('./src/**/*.graphql'),
+    typeDefs,
+    resolvers: allResolvers,
     context: (({req, res}) => buildContext({ req, res })),
     playground: true,
     plugins: [
