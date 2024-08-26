@@ -17,7 +17,6 @@ const resolvers = {
     // Products
     product: getProduct,
     products: getProducts,
-        
   },
   Mutation: {
     login,

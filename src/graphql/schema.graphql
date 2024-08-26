@@ -21,13 +21,14 @@ type Mutation {
   updateProduct(id: ID!, dto: UpdateProductoDto!): Product
   deleteProduct(id: ID!): ID
 
-  addCategory(dto: CreateCategoryDto!): Category
+  addCategory(dto: CreateCategoryDto): Category
 }
 
 type Category {
   id: ID!
   name: String!
   image: String!
+  createdAt: String
 }
 
 # Agrupar argumentos, DTOs, schemas
