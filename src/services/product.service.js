@@ -1,4 +1,4 @@
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 const boom = require('@hapi/boom');
 
 const { models } = require('../db/sequelize');
@@ -61,6 +61,10 @@ class ProductsService {
     const product = await this.findOne(id);
     await product.destroy();
     return { id };
+  }
+
+  async getByCategory(id) {
+    return await models.Product.findAll({ where: { categoryId: id } });
   }
 
 }

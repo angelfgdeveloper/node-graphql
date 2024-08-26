@@ -11,6 +11,8 @@ type Query {
   # Products
   product(id: ID!): Product
   products: [Product!]! # el arreglo no puede ser nulo en ambos lugares
+
+  category(id: ID!): Category
 }
 
 # Crear, Actualizar y Eliminar
@@ -29,6 +31,7 @@ type Category {
   name: String!
   image: String!
   createdAt: String
+  products: [Product!]
 }
 
 # Agrupar argumentos, DTOs, schemas
